@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Clock
+        </title>
+        <link rel ="stylesheet" href="style.css">
+    </head>
+</html>
+
+<body onload="initClock()">
+
+
+    <div class ="title">
+        <h1 style =" color: rgb(199, 29, 29);text-align: center; margin-top: 200px;font-family: Georgia, 'Times New Roman', Times, serif; ">  Time and Date </h1>
+    </div>
+    
+    
+    <div class ="dateandtime">
+
+        <div class ="time">
+            <span id ="hour">00</span>:
+            <span id ="minute">00</span>:
+            <span id ="seconds">00 </span> 
+            <span id ="period"> am</span>
+        </div>
+
+        <div class ="date">
+            <span id ="dayname">Day</span>,
+            <span id ="month">Month</span>
+            <span id ="daynum">00</span>,
+            <span id ="year">Year</span>
+        </div>
+        
+    </div>
+
+    <script type="text/javascript">
+        function updateClock(){
+            var now = new Date();
+            var dname = now.getDay(),
+                mo = now.getMonth(),
+                dnum = now.getDate(),
+                yr = now.getFullYear(),
+                hou = now.getHours(),
+                min = now.getMinutes(),
+                sec = now.getSeconds(),
+                pe = "AM";
+                if(hour ==0)
+                {
+                    hou = 12;
+                }
+                if (hou >12)
+                {
+                    hou = hou -12;
+                    pe = "pm"
+                }
+
+                var months = ["January","February","March","April","May","June","July","August","September","October","November","December" ];
+                var week = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+                var ids =["dayname","month","daynum","year","hour","minute","seconds","period"];
+                var values =[week[dname],months[mo],dnum,yr,hou,min,sec,pe];
+                for(var i = 0;i < ids.length; i++)
+                document.getElementById(ids[i]).firstChild.nodeValue = values[i]; 
+
+
+        }
+        function initClock(){
+            updateClock();
+            window.setInterval("updateClock()",1);
+        }
+
+    </script>
+</body>
